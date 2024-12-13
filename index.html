@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome!</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1a1a1a;
+            font-family: Arial, sans-serif;
+            color: #ff69b4;
+            text-align: center;
+        }
+
+        .container {
+            padding: 2rem;
+            border-radius: 20px;
+            background: rgba(255, 105, 180, 0.1);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.2);
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.2em;
+            background: #ff69b4;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 1s forwards 1s;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+        }
+
+        .tiktok-icon {
+            width: 100px;
+            height: 100px;
+            margin: 2rem auto;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container > * {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        .container > *:nth-child(1) { animation-delay: 0.2s; }
+        .container > *:nth-child(2) { animation-delay: 0.4s; }
+        .container > *:nth-child(3) { animation-delay: 0.6s; }
+        .container > *:nth-child(4) { animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok Logo" class="tiktok-icon">
+        <h1>Wait! Before You Continue...</h1>
+        <p class="message" style="color: white; font-size: 24px; line-height: 1.5; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);">OPEN YOUR TIKTOK APP AND CHECK OUR STREAKS</p>
+        <a href="celebration.html" class="button">I'm Ready for the Surprise! 🎈</a>
+    </div>
+</body>
+</html>

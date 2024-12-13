@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Congratulations Certificate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1a1a1a;
+            font-family: 'Fredoka One', cursive;
+            overflow: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 1.5s infinite ease-in-out;
+        }
+
+        .certificate {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            animation: slideIn 1s ease-out forwards;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        .typing-text {
+            color: white;
+            font-size: 1.8em;
+            margin: 20px 0;
+            min-height: 1.6em;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            position: relative;
+            letter-spacing: 2px;
+            word-spacing: 10px;
+            text-align: center;
+        }
+
+        .typing-text span {
+            opacity: 0;
+            display: inline-block;
+            animation: popIn 0.3s forwards;
+        }
+
+        .pink-text {
+            color: #ff69b4;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes popInPink {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                transform: scale(1.2);
+                text-shadow: 0 0 30px rgba(255, 105, 180, 1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(100px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="certificate">
+        <div class="typing-text" id="text1"></div>
+        <div class="typing-text" id="text2"></div>
+        <div class="typing-text pink-text" id="text3"></div>
+    </div>
+
+    <script>
+        function createStars() {
+            const container = document.getElementById('stars');
+            const numberOfStars = 150;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(star);
+            }
+        }
+
+        async function typeText(element, text, isPink = false) {
+            const words = text.split(' ');
+            
+            for (let word of words) {
+                if (element.innerHTML !== '') {
+                    element.appendChild(document.createTextNode(' '));
+                }
+                
+                for (let i = 0; i < word.length; i++) {
+                    const span = document.createElement('span');
+                    span.textContent = word[i];
+                    span.style.animationDelay = `${i * 0.1}s`;
+                    if (isPink) {
+                        span.style.animation = 'popInPink 0.3s forwards';
+                    }
+                    element.appendChild(span);
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+            }
+            await new Promise(resolve => setTimeout(resolve, 300));
+        }
+
+        async function animateTexts() {
+            const texts = [
+                { el: document.getElementById('text1'), text: 'CONGRATS LOVE FOR SURVIVING THIS SEM!' },
+                { el: document.getElementById('text2'), text: 'PROUD OF YOU ALWAYS MWUAH' },
+                { el: document.getElementById('text3'), text: 'I LOVE YOU!!!', isPink: true }
+            ];
+
+            for (const text of texts) {
+                await typeText(text.el, text.text, text.isPink);
+            }
+        }
+
+        createStars();
+        animateTexts();
+    </script>
+</body>
+</html>
